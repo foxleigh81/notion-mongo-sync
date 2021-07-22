@@ -17,15 +17,13 @@ async function mongo() {
     return collection
 }
 
-
-// Run task once per hour
-setInterval(() => {
-    console.log(`Scanning for new books`)
-    // Checks for new books in the mongo db and then adds them to notion
-    // TODO: add a check to make sure the book is not already in notion
+// Checks for new books in the mongo db and then adds them to notion
+// TODO: add a check to make sure the book is not already in notion
+function main() {
     mongo()
     .then(
         async (collection) => {
+            console.log(`Scanning for new books`)
             const books = await collection.find({}).toArray()
             books.map(book => {
                 const notionData = convertBook(book)
@@ -34,7 +32,15 @@ setInterval(() => {
         }
     )
     .catch(console.error)
-    .finally(() => client.close())
-
+    .finally(() => {
+        console.log(`Scan complete. Closing database connection.`)
+        return client.close()
+    })
 }
-, 3600000)
+
+console.log(`Service is starting`)
+// Run taks once on start
+main()
+// Run task once per hour
+setInterval(() => main(), 60 * 60 * 1000)
+

@@ -1,0 +1,10 @@
+version: '2'
+services:
+  app:
+    build: .
+    command: yarn start
+    environment:
+        NOTION_TOKEN: ${NOTION_TOKEN}
+        NOTION_DATABASE_ID: ${NOTION_DATABASE_ID}
+        MONGODB_URI: ${MONGODB_URI}
+        MONGODB_DATABASE: ${MONGODB_DATABASE}

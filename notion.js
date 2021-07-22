@@ -8,6 +8,7 @@ const notion = new Client({
 
 module.exports = postToDb = async (data) => {
     try {
+        const bookCount = NaN
         await notion.request({
             method: "POST",
             path: `pages`,
@@ -16,7 +17,7 @@ module.exports = postToDb = async (data) => {
                 properties: data
             },
         })
-        console.log("Scan complete")
+        console.log(`Added ${bookCount} books`)
     } catch (error) {
         console.error(error)
     }
