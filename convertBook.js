@@ -1,4 +1,4 @@
-module.exports = function convertToNotionData(book) {
+module.exports = function convertBook(book) {
     const notionData = {
         "Title": {
             title: [
@@ -50,14 +50,9 @@ module.exports = function convertToNotionData(book) {
             }
         },
         "Subcategory": {
-            rich_text: [
-                {
-                    text: {
-                        content: book.subcategory
-                    },
-                    plain_text: book.subcategory
-                }
-            ]
+            select: {
+                name: book.subcategory
+            }
         }
     }
     return notionData

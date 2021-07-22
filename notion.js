@@ -6,7 +6,7 @@ const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 })
 
-const postToDb = async (data) => {
+module.exports = postToDb = async (data) => {
     try {
         await notion.request({
             method: "POST",
@@ -22,4 +22,3 @@ const postToDb = async (data) => {
     }
 }
 
-module.exports = postToDb

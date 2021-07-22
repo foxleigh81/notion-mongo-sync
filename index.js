@@ -1,6 +1,6 @@
 require('dotenv').config()
-const { postToDb } = require('./notion')
-const convertToNotionData = require('./convertToNotionData')
+const postToDb = require('./notion')
+const convertBook = require('./convertBook')
 
 const { MongoClient } = require('mongodb')
 
@@ -23,7 +23,7 @@ mongo()
         async (collection) => {
             const books = await collection.find({}).toArray()
             books.map(book => {
-                const notionData = convertToNotionData(book)
+                const notionData = convertBook(book)
                 postToDb(notionData)
             })
         }
