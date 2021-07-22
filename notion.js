@@ -16,7 +16,7 @@ module.exports = postToDb = async (data) => {
                 properties: data
             },
         })
-        console.log("Success! New entries added.")
+        console.log("Scan complete")
     } catch (error) {
         console.error(error)
     }

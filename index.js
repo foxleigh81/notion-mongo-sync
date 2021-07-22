@@ -17,8 +17,13 @@ async function mongo() {
     return collection
 }
 
-// Get all books from mongo
-mongo()
+
+// Run task once per hour
+setInterval(() => {
+    console.log(`Scanning for new books`)
+    // Checks for new books in the mongo db and then adds them to notion
+    // TODO: add a check to make sure the book is not already in notion
+    mongo()
     .then(
         async (collection) => {
             const books = await collection.find({}).toArray()
@@ -31,3 +36,5 @@ mongo()
     .catch(console.error)
     .finally(() => client.close())
 
+}
+, 3600000)

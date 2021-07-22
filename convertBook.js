@@ -56,14 +56,6 @@ module.exports = function convertBook(book) {
         },
         "URL" :{
             url: `https://www.bookfinder.com/search/?isbn=${book.isbn}&mode=isbn&st=sr&ac=qr`
-        },
-        "Cover": {
-            "type": "files",
-            "files": [
-                {
-                    "name": `https://pictures.abebooks.com/isbn/${book.isbn}-us-300.jpg`
-                }
-            ]
         }
     }
     return notionData
