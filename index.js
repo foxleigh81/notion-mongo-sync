@@ -18,7 +18,6 @@ async function mongo() {
 }
 
 // Checks for new books in the mongo db and then adds them to notion
-// TODO: add a check to make sure the book is not already in notion
 function main() {
     mongo()
     .then(
